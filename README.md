@@ -1,6 +1,6 @@
 # Phrase Chain
 
-This repository is for playing around with chains of two word phrases. There are a couple different games and puzzles built on top of a library of two word phrases.
+This repository is for playing around with chains of two word phrases. There are a couple different games and puzzles built on top of a dictionary of two word phrases.
 
 ## Files
 
