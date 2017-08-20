@@ -2,14 +2,22 @@
 
 This repository is for playing around with chains of two word phrases. There are a couple different games and puzzles built on top of a dictionary of two word phrases.
 
+## Set up and running
+
+Download files into the same directory.
+
+**phrase_chain.py**: Run using python
+
+**add_derivatives**: Run using python. Requires [pyenchant](http://pythonhosted.org/pyenchant/download.html) installed. 
+
 ## Files
 
 ### [dict.json](https://github.com/sam-slate/phrase-chain/blob/master/dict.json):
 A json file containing a dictionary of two word phrases. Associated with a word is a tuple that contains:
-1. A set of derivatives associated with that word (derivatives defined below)
-2. A set of words that are "matches" for that word and make up a valid two word phrase when placed after the word (criteria for valid two word phrase defined below)
+1. A list of derivatives associated with that word (derivatives defined below)
+2. A list of words that are "matches" for that word and make up a valid two word phrase when placed after the word (criteria for valid two word phrase defined below)
 
-The type for the dictionary is: `{word : {"derivatives" : set(derivative1, derivative2, ...), "matches" : set(match1, match2, ...)}}`
+The type for the dictionary is: `{word : {"derivatives" : [derivative1, derivative2, ...], "matches" : [match1, match2, ...]}}`
 
 Some invariants for the dictionary:
 * Every word that is listed as a derivative or as a match for another word has its own entry
@@ -34,4 +42,8 @@ Script that adds derivatives to the phrase dictionary using a list of suffixes a
 
 ## Definitions
 
+**Two Word Phrases**
+I've defined a two word phrase loosely as two seperately defined words that are often used together. I've included compound words that can be split into two (e.g. notebook, github), as well as hyphenated words (e.g. long-term). Grammatically speaking, I use the union of all open, closed, and hyphenated compound words.  
 
+**Derivatives**
+I've defined derivatives as words that are derived from other words, called root words. They are formed by adding an affix to the root words.
