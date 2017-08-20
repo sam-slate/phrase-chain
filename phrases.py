@@ -260,6 +260,63 @@ class Phrases:
 			else:
 				return None
 
+	# recursive function that takes in a phrases dictionary, n, and the previous phrase
+	# and returns a random chain without repeated words or words that inadvertently
+	# lead to each other
+	def recurse_get_random_n_consecutive_no_repeat(self, n, prev_phrase):
+		# base case when n = 0
+		if n == 0:
+			return []
+
+		else:
+			# get all possible phrases
+			all_possible_phrases = self.all_possible_phrases_no_derivatives(prev_phrase)
+			
+			# check if there are any possible phrases
+			if len(all_possible_phrases) > 0:
+				# randomly shuffle all_possible_phrases to provide random chain
+				random.shuffle(all_possible_phrases)
+				# if so, loop through them
+				for phrase in all_possible_phrases:
+					# recursively call recurse_get_n_consecutive with the same p,
+					# n-1, and phrase as the prev_phrase
+					recurse_call = self.recurse_get_random_n_consecutive_no_repeat(n-1, phrase)
+					# check if not none
+					if recurse_call is not None:
+						# get the rest of the words from recurse_call
+						rest_words = [p[1] for p in recurse_call]
+						# Check for repeated word
+						if phrase[1] in rest_words:
+							continue
+
+						## Check if the second word in the phrase
+						## leads to any of the other phrases
+						# get the matches for the second word
+						matches = (self.phrases_dict[phrase[1]]['matches'])
+
+						#get all the words used other than the next one
+						rest_words = set(rest_words[1:])
+
+						# check to see if the intersection between the two
+						# has length 0, if not continue
+						if len(matches.intersection(rest_words)) != 0:
+							continue
+
+						# check if 
+						# if so, insert the current phrase as the first 
+						# element in the list returned by recurse_call
+						recurse_call.insert(0, phrase)
+						return recurse_call
+					# Otherwise, continue the loop
+
+				#If the end of the for loop is reached, that means that there
+				#are no next phrases that get to n, so return None
+				return None
+
+			# if not, return none
+			else:
+				return None
+
 	# function that takes in a number n and returns a random chain of
 	# n consecutive phrases
 	def get_random_n_consecutive(self, n):
@@ -272,9 +329,28 @@ class Phrases:
 		# loop through all_phrases
 		for phrase in all_phrases:
 			# call the recursive function on the phrase
-			chain = self.recurse_get_random_n_consecutive(n, phrase)
+			chain = self.recurse_get_random_n_consecutive_no_repeat(n, phrase)
+
 			# check if chain is not None
 			if chain is not None:
+				# get the rest of the words from recurse_call
+				rest_words = [p[1] for p in chain]
+				# Check for repeated word
+				if phrase[1] in rest_words:
+					continue
+
+				## Check if the second word in the phrase
+				## leads to any of the other phrases
+				# get the matches for the second word
+				matches = (self.phrases_dict[phrase[1]]['matches'])
+
+				#get all the words used other than the next one
+				rest_words = set(rest_words[1:])
+
+				# check to see if the intersection between the two
+				# has length 0, if not continue
+				if len(matches.intersection(rest_words)) != 0:
+					continue
 				# if so, we've got it! return chain
 				return chain
 				# if not, keep going

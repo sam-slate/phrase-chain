@@ -1,5 +1,4 @@
 from phrases import *
-from get_n_consecutive import *
 from random import shuffle
 import time
 
@@ -38,13 +37,13 @@ def start_game(n):
 	start = time.time()
 
 	# call user plays
-	user_plays(chain)
+	user_plays(chain, to_print)
 
 	# get the ending time
 	end = time.time()
 	print("It took: " + str(end - start))
 
-def user_plays(chain):
+def user_plays(chain, to_print):
 	# check to see if the chain is empty
 	if not chain:
 		# print out congrats
@@ -54,21 +53,31 @@ def user_plays(chain):
 		got_it = False
 		# loop until got it
 		while (not got_it):
+			# print words left
+			print to_print
 			# get the next word
-			word = raw_input("Next word: ")
+			word = raw_input("Next phrase: " + chain[0][0] + " ")
 			# check if it matches the second word of the first
 			# phrase in the chain list
 			if word == chain[0][1]:
 				# set the boolean to true and print out statement
 				got_it = True
 				print "Got it!"
+
+				#replace the word in to_print with its strike through version
+				to_print = to_print.replace(word, strike(word))
 				# recursively call the rest of the chain
-				user_plays(chain[1:])
+				user_plays(chain[1:], to_print)
 			else: 
 				# tell the user that's not it
 				print "Try again"
 
 
+def strike(text):
+    result = ''
+    for c in text:
+        result = result + "-"
+    return result
 
 # the main function
 if __name__ == "__main__":
