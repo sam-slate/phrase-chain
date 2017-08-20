@@ -31,7 +31,7 @@ Some invariants for the dictionary:
 Defines the Phrases class which provides an interface to interact with a phrases dictionary. Reads in and writes to the dict.json file.
 
 ### [guess_chain.py](https://github.com/sam-slate/phrase-chain/blob/master/guess_chain.py):
-Progeam that runs the guess chain game using the Phrases class. A user selects how long they want their chain to be and is then given a list of shuffled words. They must guess the correct order of the words one by one. 
+Program that runs the guess chain game using the Phrases class. A user selects how long they want their chain to be and is then given a list of shuffled words. They must guess the correct order of the words one by one. 
 
 ### [phrase_chain.py](https://github.com/sam-slate/phrase-chain/blob/master/phrase_chain.py):
 Program that runs a phrase chain game using the Phrases class. A user interacts with a computer from the command line to build a chain of two word phrases, using the second word in the previous phrase as the first word in the next. As of now, the rules are defined as such:
