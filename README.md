@@ -8,7 +8,9 @@ Download files into the same directory.
 
 **phrase_chain.py**: Run using python
 
-**add_derivatives**: Run using python. Requires [pyenchant](http://pythonhosted.org/pyenchant/download.html) installed. 
+**guess_chain.py**: Run using python
+
+**add_derivatives.py**: Run using python. Requires [pyenchant](http://pythonhosted.org/pyenchant/download.html) installed.
 
 ## Files
 
@@ -27,6 +29,8 @@ Some invariants for the dictionary:
 
 ### [phrases.py](https://github.com/sam-slate/phrase-chain/blob/master/phrases.py):
 Defines the Phrases class which provides an interface to interact with a phrases dictionary. Reads in and writes to the dict.json file.
+
+### 
 
 ### [phrase_chain.py](https://github.com/sam-slate/phrase-chain/blob/master/phrase_chain.py):
 Program that runs a phrase chain game using the Phrases class. A user interacts with a computer from the command line to build a chain of two word phrases, using the second word in the previous phrase as the first word in the next. As of now, the rules are defined as such:
