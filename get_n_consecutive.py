@@ -1,9 +1,6 @@
 from phrases import *
 from random import shuffle
 
-#the name of the file where the dictionary is stored
-storage_file = "dict.json"
-
 # recursive function that takes in a phrases dictionary, n, and the previous phrase
 def recurse_get_random_n_consecutive(p, n, prev_phrase):
 	# base case when n = 0
