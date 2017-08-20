@@ -1,6 +1,10 @@
 from phrases import *
 from get_n_consecutive import *
 from random import shuffle
+import time
+
+#the name of the file where the dictionary is stored
+storage_file = "dict.json"
 
 p = Phrases()
 
@@ -12,7 +16,7 @@ def print_starting_messages():
 def start_game(n):
 	global p
 	# get the chain
-	chain = get_random_n_consecutive(p, n)
+	chain = p.get_random_n_consecutive(n)
 
 	#copy the chain in order to shuffle it
 	shuffled_chain = chain[:]
@@ -30,8 +34,15 @@ def start_game(n):
 	print "Your words are: " + to_print
 	print "And your first word is: " + chain[0][0]
 
+	# Get the starting time
+	start = time.time()
+
 	# call user plays
 	user_plays(chain)
+
+	# get the ending time
+	end = time.time()
+	print("It took: " + str(end - start))
 
 def user_plays(chain):
 	# check to see if the chain is empty
@@ -55,7 +66,7 @@ def user_plays(chain):
 				user_plays(chain[1:])
 			else: 
 				# tell the user that's not it
-				print "Nope"
+				print "Try again"
 
 
 
@@ -70,12 +81,4 @@ if __name__ == "__main__":
 
 	# call start game with n
 	start_game(n)
-
-	# # read in from json
-	# p.read_in_json(storage_file)
-
-	# chain = recurse_get_random_n_consecutive(p, 4, ("back", "up"))
-	# print chain
-	# chain = get_random_n_consecutive(p, 10)
-	# print chain
 
