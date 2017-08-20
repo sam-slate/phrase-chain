@@ -48,7 +48,9 @@ Script that adds derivatives to the phrase dictionary using a list of suffixes a
 ## Definitions
 
 **Two Word Phrases**
+
 I've defined a two word phrase loosely as two seperately defined words that are often used together. I've included compound words that can be split into two (e.g. notebook, github), as well as hyphenated words (e.g. long-term). Grammatically speaking, I use the union of all open, closed, and hyphenated compound words.  
 
 **Derivatives**
+
 I've defined derivatives as words that are derived from other words, called root words. They are formed by adding an affix to the root words.
