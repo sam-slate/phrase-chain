@@ -7,7 +7,7 @@ import json
 class Phrases:
 
 	# define the phrases dictionary with the form:
-	# {"word" : {"derivatives" : set(word1, word2, ...), "matches" : set(word1, word2, ...)}}
+	# {word : {"derivatives" : set(word1, word2, ...), "matches" : set(word1, word2, ...)}}
 	phrases_dict = {}
 
 	# initializer
